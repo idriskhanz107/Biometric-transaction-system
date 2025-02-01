@@ -1,0 +1,6 @@
+<h1>Shared Files</h1>
+<ul>
+    {% for file in shared_files %}
+        <li>{{ file.filename }} - <a href="/download/{{ file.id }}">Download</a></li>
+    {% endfor %}
+</ul>

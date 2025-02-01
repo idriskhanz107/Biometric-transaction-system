@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing</title>
+</head>
+<body>
+    <h1>Transaction Sharing</h1>
+    <h2>Amount</h2>
+    <form method="post" enctype="multipart/form-data">
+        <label for="file">Select File:</label><br>
+        <input type="text" id="file" name="file"  required><br>
+        <label for="uploader_id">Transaction To:</label><br>
+        <select name="uploader_id" id="uploader_id" required>
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <h2>Share File</h2>
+        <label for="file_id">Select File:</label><br>
+        <select name="file_id" id="file_id">
+            {% for file in files %}
+            <option value="{{ file.id }}">{{ file.filename }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="shared_with_id">Share with:</label><br>
+        <select name="shared_with_id" id="shared_with_id" multiple>
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select><br><br>
+        <input type="submit" value="Share">
+    </form>
+    
+    <h2>Available Files</h2>
+    <ul>
+        {% for file in files %}
+        <li>{{ file.filename }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
